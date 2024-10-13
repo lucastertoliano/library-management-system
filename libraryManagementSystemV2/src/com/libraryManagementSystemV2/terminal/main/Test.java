@@ -36,7 +36,7 @@ public class Test {
 			
 			}
 		} while (option != 5);
-
+		
+		sc.close();
 	}
-
 }

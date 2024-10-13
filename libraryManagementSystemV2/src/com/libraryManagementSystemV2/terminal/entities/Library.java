@@ -11,53 +11,42 @@ public class Library {
 	private ArrayList<Material> materials = new ArrayList<Material>();
 	
 	public void addMaterial() {
-		System.out.println("Enter the Title: ");
-		String title = sc.nextLine();
-		if (title.isEmpty()) {
-			System.out.println("Please enter the title! \n Try Again");
-			return;
-		}
-		System.out.println("Enter the Author: ");
-		String author = sc.nextLine();
-		if (author.isEmpty()) {
-			System.out.println("Please enter the author! \n Try Again");
-			return;
-		}
-		System.out.println("What kind of material you want to add? (1-Book and 2-Magazine)");
-		int option = sc.nextInt();
-		sc.nextLine();
-		if (option == 1) {
-			Genre genre;
-			System.out.println("Enter 1 to History, 2 to Science Fiction and 3 to Poetry: ");
-			int genreOption = sc.nextInt();
-			sc.nextLine();
-			if (genreOption == 1) {
-				genre = Genre.HISTORY;
-			}
-			else if (genreOption == 2) {
-				genre = Genre.SCIENCE_FICTION;
-			}
-			else if (genreOption == 3) {
-				genre = Genre.POETRY;
-			}
-			else {
-				genre = Genre.UNDEFINED;
-			}
+        System.out.println("Enter the Title: ");
+        String title = sc.nextLine();
+        if (title.isEmpty()) {
+            System.out.println("Please enter the title! \n Try Again");
+            return;
+        }
+        System.out.println("Enter the Author: ");
+        String author = sc.nextLine();
+        if (author.isEmpty()) {
+            System.out.println("Please enter the author! \n Try Again");
+            return;
+        }
+        System.out.println("What kind of material you want to add? (1-Book and 2-Magazine)");
+        int option = sc.nextInt();
+        sc.nextLine();
+        if (option == 1) {
+            Genre.printAllGenres();
+            System.out.println("Enter the Genre Option: ");
+            int genreOption = sc.nextInt();
+            sc.nextLine();
+            Genre genre = Genre.getGenreByOption(genreOption);
+            Book book = new Book(title, author, genre);
+            materials.add(book);
+            System.out.println("Book added successfully");
+        }
+        else if (option == 2) {
+            System.out.println("Enter the number: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            Magazine magazine = new Magazine(title, author, number);
+            materials.add(magazine);
+            System.out.println("Magazine added successfully");
+        }
 
-			Book book = new Book(title, author, genre);
-			materials.add(book);
-			System.out.println("Book added successfully");
-		}
-		else if (option == 2) {
-			System.out.println("Enter the number: ");
-			int number = sc.nextInt();
-			sc.nextLine();
-			Magazine magazine = new Magazine(title, author, number);
-			materials.add(magazine);
-			System.out.println("Magazine added successfully");
-		}
-		
-	}
+    }
+
 	
 	public void searchMaterial() {
 		System.out.println("Enter the title material would you like search? ");
